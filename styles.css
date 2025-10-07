@@ -8,15 +8,14 @@ body {
     display: grid;
     gap: 6px;
     grid-template-columns: 1fr;
-    grid-template-rows: 56px auto 1fr auto auto auto auto 45px;
+    grid-template-rows: minmax(45px,55px) minmax(35px,45px) 1fr minmax(50px,60px) minmax(50px,60px) minmax(65px,75px) minmax(35px,45px);
     grid-template-areas: 
     "header"
     "nav"
     "main"
-    "aside"
     "wildcar1"
     "wildcar2"
-    "wildcar3"
+    "aside"
     "footer";
 
 }
@@ -51,12 +50,72 @@ aside {
     background-color:grey;
 }
 
-.wildcar3 {
-    grid-area: wildcar3;
-    background-color: grey;
-}
 
 footer {
     grid-area: footer;
     background-color:rgb(208, 86, 208);
+}
+
+    header, nav, main, aside, footer, .wildcar1, .wildcar2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font: 600 1rem/1.2 system-ui, Arial, sans-serif;
+      color: #17202a;
+      border-radius: 5px;
+
+    }
+/*
+BASE: Tablet
+*/
+@media (min-width: 768px) {
+    body {
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 
+        /*header*/
+        minmax(45px,55px) 
+        /*nav*/
+        minmax(35px,45px) 
+        /*aside,main*/
+        1fr
+        /*wildcar1,wildcar2*/
+        minmax(60px,120px)
+        /*footer*/
+        minmax(35px,45px);
+        grid-template-areas: 
+        "header   header"
+        "nav      nav"
+        "aside    main"
+        "wildcar1 wildcar2"
+        "footer   footer";
+
+    }
+}
+
+/*
+BASE: Desktop
+*/
+
+@media (min-width: 1024px) {
+    body {
+        grid-template-columns: 200px 1fr 170px;
+        grid-template-rows: 
+        /*header*/
+        minmax(45px,55px)       
+        /*nav*/
+        minmax(35px,45px)
+        /*sidebar,main,Wildcar1*/
+        minmax(120px,1fr) 
+        /*sidebar,main,Wildcar2*/
+        minmax(120px,1fr) 
+        /*Footer*/
+        minmax(35px,45px);
+        grid-template-areas: 
+        "header  header header"
+        "nav     nav    nav"
+        "aside   main   wildcar1"
+        "aside   main   wildcar2"
+        "footer  footer footer";
+    }
+
 }
